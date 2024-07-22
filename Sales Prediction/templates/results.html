@@ -1,0 +1,89 @@
+<!-- results.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Prediction Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #4CAF50;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #45a049;
+        }
+        .feature-importance {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .feature-importance img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .model-results {
+            margin-top: 40px;
+        }
+        .model-results ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+        .model-results li {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sales Prediction Results</h1>
+        <p>Predicted Sales: {{ prediction }} thousand units</p>
+        <a href="/">Predict Again</a>
+        
+        <div class="feature-importance">
+            <h2>Feature Importance</h2>
+            <img src="data:image/png;base64,{{ plot_url }}" alt="Feature Importance">
+        </div>
+        
+        <div class="model-results">
+            <h2>Model Comparison Results</h2>
+            <ul>
+                {% for model, mean_score, std_score in model_results %}
+                    <li>{{ model }} - Mean R2 Score: {{ mean_score }}, Std: {{ std_score }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
